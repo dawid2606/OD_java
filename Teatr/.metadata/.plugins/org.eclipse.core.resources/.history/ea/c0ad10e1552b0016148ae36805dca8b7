@@ -1,0 +1,55 @@
+package jaxRs;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+import entities.Spectacle;
+import jpa.SpectacleHandler;
+
+@Path("/Spectacles")
+public class SpectacleJaxRs {
+	
+	public SpectacleJaxRs(){
+		
+	}
+	
+	@GET
+	@Path("/getAllSpectacles")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Spectacle> getAllSpectacles() {
+		SpectacleHandler sr=new SpectacleHandler();
+		List<JsonStringBuilder> list = new ArrayList();
+		
+		return sr.getAllSpectacles();
+	}
+//	@GET
+//	@Path("/getSingleSpectacle")
+//	//@Produces(MediaType.APPLICATION_JSON)
+//	public String getSingleSpectacle() {
+//		SpectacleHandler sr=new SpectacleHandler();
+//		return sr.getSingleSpectacle(2).toString();
+//	}
+//	@GET
+//	@Path("/getSingleSpectacle2")
+//	//@Produces(MediaType.APPLICATION_JSON)
+//	public String getSingleSpectacle2() {
+//		SpectacleHandler sr=new SpectacleHandler();
+//		JsonStringBuilder s = new JsonStringBuilder(sr.getSingleSpectacle(2));
+//		return s.toString();
+//	}
+	@GET
+	@Path("/getSingleSpectacle3")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Spectacle getSingleSpectacle3() {
+		SpectacleHandler sr=new SpectacleHandler();
+		Spectacle spectacle=new Spectacle();
+		spectacle=sr.getSingleSpectacle(2);
+		return spectacle;
+	}
+
+}

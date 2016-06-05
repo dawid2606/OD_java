@@ -1,0 +1,12 @@
+1464905713407	Move 'ejb' to 'build'
+1464905719848	Move 'entities' to 'build'
+1464905722257	Move 'jax_rs' to 'build'
+1464905724824	Move 'jpa' to 'build'
+1464905735457	Move 'META-INF' to 'build'
+1464906863816	Move package
+1464906871662	Move package
+1464906878813	Move package
+1464909507118	Delete element
+1465029926867	Move compilation unit
+1465030486591	Delete element
+1465030504405	Rename package 'rest4'

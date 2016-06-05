@@ -1,0 +1,28 @@
+package jax_rs;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+import entities.Spectacle;
+
+@Path("/Spectacles")
+public class SpectacleJaxRs {
+	
+	@GET
+	@Path("/getAllSpectacles")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Spectacle> getAllSpectacles() {
+
+		List<Spectacle> spectacles = new ArrayList();
+		spectacles.getAllSpectacles();
+
+		return track;
+
+	}
+
+}
