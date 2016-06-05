@@ -1,0 +1,60 @@
+package rest4;
+
+import java.io.IOException;
+
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.SerializationConfig;
+import org.codehaus.jettison.json.JSONObject;
+import org.codehaus.jettison.json.JSONArray;
+import org.codehaus.jettison.json.JSONException;
+
+import java.util.HashMap;
+import java.util.Map;
+
+//import com.fasterxml.jackson.annotation.JsonInclude.Include;
+//import com.fasterxml.jackson.core.JsonGenerator;
+//import com.fasterxml.jackson.core.JsonProcessingException;
+//import com.fasterxml.jackson.databind.JsonSerializer;
+//import com.fasterxml.jackson.databind.ObjectMapper;
+//import com.fasterxml.jackson.databind.SerializationFeature;
+//import com.fasterxml.jackson.databind.SerializerProvider;
+
+
+@Path("/v1/status/{varX}")
+public class vb_status {
+
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public String returnTitle(@PathParam("varX") Integer varx){
+		User u = new User();
+		ObjectMapper mapper = new ObjectMapper();
+		u.setName("Dawid"); 
+		u.setId(2);
+		JSONObject obj = new JSONObject();
+		try {
+			obj.put("name", "Dawid");
+			obj.put("id", 2);
+			
+		} catch (JSONException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		String s = "{ \"ID\":\"SGML\",\"SortAs\":\"SGML\",\"GlossTerm\":\"Standard Generalized Markup Language\",\"Acronym\":\"SGML\",\"Abbrev\":\"ISO 8879:1986\"}";
+		try {
+			
+			mapper.configure(SerializationConfig.Feature.FAIL_ON_EMPTY_BEANS, false);
+			String jsonInString = mapper.writeValueAsString(u);
+			//return jsonInString;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//return "{ \"Empty\":\"empty\" }";
+		return obj.toString();
+	}
+	
+}

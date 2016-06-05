@@ -1,0 +1,22 @@
+package rest4;
+
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+
+@Path("/v1/status/{varX}")
+public class vb_status {
+
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public String returnTitle(@PathParam("varX") Integer varx){
+		User u;
+		if(varx == 1)
+			u = new User(1, "Ola");
+		else
+			u = new User(2, "Dawid");
+		
+		String s = "{ \"ID\":\"SGML\",\"SortAs\":\"SGML\",\"GlossTerm\":\"Standard Generalized Markup Language\",\"Acronym\":\"SGML\",\"Abbrev\":\"ISO 8879:1986\"}";
+	return s;
+	}
+	
+}

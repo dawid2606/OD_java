@@ -1,0 +1,52 @@
+package rest4;
+
+import java.io.IOException;
+import java.lang.reflect.Field;
+
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.SerializationConfig;
+import org.codehaus.jackson.map.JsonMappingException;
+import org.eclipse.jdt.internal.compiler.classfmt.FieldInfo;
+
+
+import org.codehaus.jettison.json.JSONArray;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jackson.*;
+
+@Path("/v1/status/")
+public class vb_status {
+	@Path("{varX}")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public String returnTitle(@PathParam("varX") Integer varx){
+		ObjectMapper mapper = new ObjectMapper();
+		UserFactory factory = new UserFactory(varx);
+		User user = factory.getUser();
+		//JsonStringBuilder s = new JsonStringBuilder(user);
+		//return s.toString();
+		
+		return user.toString();
+	} 
+	
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public String returnJsona(String incomingData){
+		ObjectMapper mapper = new ObjectMapper();
+		try
+		{
+			User itemEntry = mapper.readValue(incomingData, User.class);
+			JsonStringBuilder builder = new JsonStringBuilder(itemEntry);
+			return builder.toString();
+		}
+		catch(Exception ex)
+		{
+			return "{ \"Blad\" : \"kurwa exception\" }";
+		}
+		
+		//return "{ \"Blad\" : \"kurwa\" }";
+	}
+}

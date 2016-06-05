@@ -1,0 +1,16 @@
+package rest4;
+
+public class User {
+
+	Integer id;
+	String name;
+	
+	public User(Integer id, String name){
+		this.id = id;
+		this.name = name;
+	}
+	
+	public String toString(){
+		return "User [ id = "+id+", name = "+name+" ]";
+	}
+}
