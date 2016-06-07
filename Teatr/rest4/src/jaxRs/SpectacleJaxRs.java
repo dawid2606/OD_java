@@ -1,13 +1,21 @@
 package jaxRs;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import org.codehaus.jackson.map.ObjectMapper;
 
 import entities.Spectacle;
 import jpa.SpectacleHandler;
@@ -30,11 +38,51 @@ public class SpectacleJaxRs {
 	@GET
 	@Path("/getSingleSpectacle/{spectacle_id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Spectacle getSingleSpectacle3(@PathParam("spectacle_id") Integer spectacle_id) {
+	public Spectacle getSingleSpectacle(@PathParam("spectacle_id") Integer spectacle_id) {
 		SpectacleHandler sr=new SpectacleHandler();
 		Spectacle spectacle=new Spectacle();
 		spectacle=sr.getSingleSpectacle(spectacle_id);
 		return spectacle;
 	}
-
+	
+	@POST
+	@Path("/post")
+	@Consumes(MediaType.APPLICATION_JSON)
+		public Response crunchifyREST(InputStream incomingData) {
+			StringBuilder crunchifyBuilder = new StringBuilder();
+			try {
+				BufferedReader in = new BufferedReader(new InputStreamReader(incomingData));
+				String line = null;
+				while ((line = in.readLine()) != null) {
+					crunchifyBuilder.append(line);
+				}
+			} catch (Exception e) {
+				System.out.println("Error Parsing: - ");
+			}
+			System.out.println("Data Received: " + crunchifyBuilder.toString());
+	 
+			// return HTTP response 200 in case of success
+			return Response.status(200).entity(crunchifyBuilder.toString()).build();
+		}
+	
+	//to cos mi nie dziala
+	@Path("/postSpectacle")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Spectacle returnJSON(String incomingData){
+		ObjectMapper mapper = new ObjectMapper();
+		try
+		{
+			Spectacle spectacle = mapper.readValue(incomingData, Spectacle.class);
+			return spectacle;
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		return null;
+		
+		//return "{ \"Blad\" : \"kurwa\" }";
+	}
+	
 }

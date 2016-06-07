@@ -7,9 +7,7 @@
     </node>
     <node name="user.library.provider">
       <node name="last.used.libraries">
-        <node name="2.1">
-          <node name="EclipseLink 2.5.2"/>
-        </node>
+        <node name="2.1"/>
       </node>
     </node>
   </facet>

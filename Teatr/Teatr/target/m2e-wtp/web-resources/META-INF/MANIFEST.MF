@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
-Built-By: Wiesiek
+Built-By: lenovo_Dawid
 Build-Jdk: 1.8.0_91
 Created-By: Maven Integration for Eclipse
 
