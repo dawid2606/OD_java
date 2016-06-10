@@ -16,20 +16,49 @@ import jpa.SpectacleHandler;
 
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import org.codehaus.jackson.map.ObjectMapper;
+
+import entities.Spectacle;
+import jpa.SpectacleHandler;
 
 @Path("/v1/status/") ///{varX}
 public class vb_status {
 
 	@GET
+	@Path("/{varX}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String returnTitle(){
+	public User returnTitle(){
 		
 		User user = new User();
 		user.setId(2);
 		user.setName("Ola");
-		
-		return user.toString();}
+		return user;
+		}
+	
+	@GET
+	@Path("/getSingleSpectacle/{spectacle_id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Spectacle getSingleSpectacle(@PathParam("spectacle_id") Integer spectacle_id) {
+		SpectacleHandler sr=new SpectacleHandler();
+		Spectacle spectacle=new Spectacle();
+		spectacle=sr.getSingleSpectacle(spectacle_id);
+		return spectacle;
+	}
 	
 	@POST 
 	@Path("post")

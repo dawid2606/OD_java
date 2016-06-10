@@ -24,7 +24,7 @@ import jpa.SpectacleHandler;
 public class SpectacleJaxRs {
 	
 	public SpectacleJaxRs(){
-		
+		super();
 	}
 	
 	@GET
@@ -64,25 +64,4 @@ public class SpectacleJaxRs {
 			// return HTTP response 200 in case of success
 			return Response.status(200).entity(crunchifyBuilder.toString()).build();
 		}
-	
-	//to cos mi nie dziala
-	@Path("/postSpectacle")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Spectacle returnJSON(String incomingData){
-		ObjectMapper mapper = new ObjectMapper();
-		try
-		{
-			Spectacle spectacle = mapper.readValue(incomingData, Spectacle.class);
-			return spectacle;
-		}
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
-		return null;
-		
-		//return "{ \"Blad\" : \"kurwa\" }";
-	}
-	
 }
